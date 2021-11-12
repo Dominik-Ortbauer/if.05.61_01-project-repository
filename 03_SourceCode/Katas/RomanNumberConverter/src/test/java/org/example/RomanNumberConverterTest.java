@@ -10,6 +10,8 @@ import org.junit.Test;
  */
 public class RomanNumberConverterTest
 {
+    //Test for toRoman
+
     @Test
     public void itShouldReturnI_Given1() {
         assertEquals("I", RomanNumberConverter.toRoman(1));
@@ -54,5 +56,12 @@ public class RomanNumberConverterTest
     @Test
     public void itShouldReturnIX_Given9() {
         assertEquals("IX", RomanNumberConverter.toRoman(9));
+    }
+
+    //Tests for toArabic
+
+    @Test
+    public void ItShouldReturn1_GivenI() {
+        assertEquals(1,  RomanNumberConverter.toArabic("I"));
     }
 }

@@ -64,4 +64,9 @@ public class RomanNumberConverterTest
     public void ItShouldReturn1_GivenI() {
         assertEquals(1,  RomanNumberConverter.toArabic("I"));
     }
+
+    @Test
+    public void ItShouldReturn2_GivenII() {
+        assertEquals(2, RomanNumberConverter.toArabic("II"));
+    }
 }

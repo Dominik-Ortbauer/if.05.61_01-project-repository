@@ -14,14 +14,14 @@ public class RomanNumberConverter
     }
 
     public static int toArabic(String romanNumber) {
-        int sum = 0;
-
-        for (int i = 0; i < romanNumber.length(); i++) {
-            if(romanNumber.charAt(i) == 'I') sum += 1;
-            if(romanNumber.charAt(i) == 'V') sum += 5;
-            if(romanNumber.charAt(i) == 'X') sum += 10;
+        var sum = 0;
+        var index = 0;
+        for(var numeral : Numeral.values()) {
+            while(romanNumber.startsWith(numeral.mRoman)) {
+                sum += numeral.mArabic;
+                romanNumber = romanNumber.substring(numeral.mRoman.length());
+            }
         }
-
         return sum;
     }
 

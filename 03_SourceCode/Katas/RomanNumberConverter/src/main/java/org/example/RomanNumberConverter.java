@@ -14,7 +14,14 @@ public class RomanNumberConverter
     }
 
     public static int toArabic(String romanNumber) {
-        return romanNumber.length();
+        int sum = 0;
+
+        for (int i = 0; i < romanNumber.length(); i++) {
+            if(romanNumber.charAt(i) == 'I') sum += 1;
+            if(romanNumber.charAt(i) == 'V') sum += 5;
+        }
+
+        return sum;
     }
 
     enum Numeral{

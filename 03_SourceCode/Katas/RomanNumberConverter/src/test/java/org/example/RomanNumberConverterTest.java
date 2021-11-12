@@ -101,4 +101,9 @@ public class RomanNumberConverterTest
     public void ItShouldReturn4_GivenIV() {
         assertEquals(4, RomanNumberConverter.toArabic("IV"));
     }
+
+    @Test
+    public void ItShouldReturn9_GivenIX() {
+        assertEquals(9, RomanNumberConverter.toArabic("IX"));
+    }
 }

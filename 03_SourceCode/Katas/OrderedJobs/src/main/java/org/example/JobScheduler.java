@@ -48,8 +48,10 @@ public class JobScheduler
             independent.addSubJob(dependentJob);
         } else {
             if(mTotallyIndependentJobs.contains(dependent)) {
-                mTotallyIndependentJobs.remove(dependent);
-                independent.addSubJob(dependent);
+                if(dependent.hasJob(independentJob) == null) {
+                    mTotallyIndependentJobs.remove(dependent);
+                    independent.addSubJob(dependent);
+                }
             }
         }
     }

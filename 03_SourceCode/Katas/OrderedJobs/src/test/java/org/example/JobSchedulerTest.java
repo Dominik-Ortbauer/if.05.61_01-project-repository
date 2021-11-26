@@ -117,4 +117,19 @@ public class JobSchedulerTest {
         //assert
         assertEquals("BA", sut.getList());
     }
+
+    @Test
+    public void ItShouldIgnoreRegisteringIfItResultsInLoop() {
+        //arrange
+        var sut = new JobScheduler();
+        sut.registerJob("B", "A");
+        sut.registerJob("C", "B");
+        sut.registerJob("A", "C");
+
+        //act
+        sut.sort();
+
+        //assert
+        assertEquals("ABC", sut.getList());
+    }
 }

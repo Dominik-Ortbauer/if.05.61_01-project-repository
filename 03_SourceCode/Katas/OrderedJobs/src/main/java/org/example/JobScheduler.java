@@ -1,17 +1,16 @@
 package org.example;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class JobScheduler
 {
-    private List<Job> mJobs = new LinkedList<>();
+    private List<Job> mTotallyIndependentJobs = new LinkedList<>();
 
     public void registerJob(String jobName) {
         Job job = new Job(jobName);
-        if(!mJobs.contains(job)) {
-            mJobs.add(job);
+        if(hasJob(jobName) == null) {
+            mTotallyIndependentJobs.add(job);
         }
     }
 
@@ -20,18 +19,40 @@ public class JobScheduler
     }
 
     public String getList() {
-        return mJobs;
+        String s = "";
+        for(Job job : mTotallyIndependentJobs) {
+            s += job.toString();
+        }
+
+        return s;
+    }
+
+    private Job hasJob(String jobName) {
+        for(Job job : mTotallyIndependentJobs) {
+            Job out = job.hasJob(jobName);
+            if(out != null) return out;
+        }
+
+        return null;
     }
 
     public void registerJob(String dependentJob, String independentJob) {
-        Job job = new Job(independentJob);
-        if(!mJobs.contains(job)) {
-            mJobs.add(job);
-        }
+        Job independent = hasJob(independentJob);
+        Job dependent = hasJob(dependentJob);
 
-        Job job2 = new Job(dependentJob, job);
-        if(!mJobs.contains(job2)) {
-            mJobs.add(job2);
+        if (independent == null) {
+            independent = new Job(independentJob);
+            mTotallyIndependentJobs.add(independent);
+        }
+        if(dependent == null) {
+            independent.addSubJob(dependentJob);
+        } else {
+            if(mTotallyIndependentJobs.contains(dependent)) {
+                if(dependent.hasJob(independentJob) == null) {
+                    mTotallyIndependentJobs.remove(dependent);
+                    independent.addSubJob(dependent);
+                }
+            }
         }
     }
 }

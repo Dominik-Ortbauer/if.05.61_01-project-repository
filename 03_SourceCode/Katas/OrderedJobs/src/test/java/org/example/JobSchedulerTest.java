@@ -132,4 +132,14 @@ public class JobSchedulerTest {
         //assert
         assertEquals("ABC", sut.getList());
     }
+
+    @Test
+    public void test() {
+        var sut = new JobScheduler();
+        sut.registerJob("D", "C");
+        sut.registerJob("E", "A");
+        sut.registerJob("D", "E");
+
+        assertEquals("CDAE", sut.getList());
+    }
 }

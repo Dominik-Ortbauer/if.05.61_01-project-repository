@@ -5,4 +5,5 @@ public class Virus {
     private double infectousness;
     private int incubationTime;
     private double deadliness;
+    
 }

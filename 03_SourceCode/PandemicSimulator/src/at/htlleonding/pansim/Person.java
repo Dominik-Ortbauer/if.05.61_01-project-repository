@@ -7,11 +7,15 @@ public class Person {
     private double probOfDeath;
     private boolean qurantined;
 
+    public Person(){
+
+    }
+
     private void participateInEvent(Event event){
 
     }
 
-    private void infect(){
+    private void infect(double eventInfection){
 
     }
 

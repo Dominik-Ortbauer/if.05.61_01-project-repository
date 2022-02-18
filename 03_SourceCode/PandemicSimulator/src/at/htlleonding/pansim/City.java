@@ -14,7 +14,10 @@ public class City {
 
     }
 
-    public void startSimulation(int generation){
+    public void startSimulation(){
+        generation = 0;
+        virus = new Virus();
 
+        update();
     }
 }

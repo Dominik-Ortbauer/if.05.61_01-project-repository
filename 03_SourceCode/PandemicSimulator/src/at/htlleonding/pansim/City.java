@@ -6,6 +6,7 @@ import java.util.List;
 public class City {
     private List<Event> events = new LinkedList<>();
     private List<Person> people = new LinkedList<>();
+    private List<Measure> measures = new LinkedList<>();
     private Virus virus;
     private Renderer renderer;
     private int generation;

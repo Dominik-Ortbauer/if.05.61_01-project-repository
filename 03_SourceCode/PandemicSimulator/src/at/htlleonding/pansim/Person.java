@@ -7,12 +7,24 @@ public class Person {
     private double probOfDeath;
     private boolean qurantined;
 
+    public Person(){
+
+    }
+
     private void participateInEvent(Event event){
 
     }
 
-    private void infect(){
+    public Person() {
+        this.infectionState = InfectionState.SUSCEPTABLE;
+        this.transmitability = 0;
+        this.immunitivity = 0;
+        // this.probOfDeath = probOfDeath;
+        this.qurantined = false;
+    }
 
+    private void infect(){
+        this.infectionState = InfectionState.INFECTED;
     }
 
     public void vaccinate(){

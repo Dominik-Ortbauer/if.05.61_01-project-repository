@@ -2,28 +2,19 @@ package at.htlleonding.pansim;
 
 public class Measure {
     private double obeynessPercentage;
-    private int startTime;
-    private int endTime;
+    private int duration;
 
-    public Measure(int startTime, int endTime, double obeynessPercentage){
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public Measure(int duration, double obeynessPercentage){
+        this.duration = duration;
         this.obeynessPercentage = obeynessPercentage;
     }
 
-    public int getStartTime() {
-        return startTime;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
+    public void setStartTime(int duration) {
+        this.duration = duration;
     }
 
-    public int getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
-    }
 }

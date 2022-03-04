@@ -12,4 +12,8 @@ public enum InfectionState  {
         this.duration = duration;
         this.transmitability = transmitability;
     }
+
+    public double getTransmitability(){
+        return transmitability;
+    }
 }

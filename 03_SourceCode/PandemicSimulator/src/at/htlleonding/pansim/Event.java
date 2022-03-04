@@ -3,7 +3,7 @@ package at.htlleonding.pansim;
 import java.util.HashMap;
 
 public class Event implements Updatable {
-    private HashMap<Person, Integer> people;
+    private HashMap<Person, Integer> people; //the integer is the duration for which the person is in the event
     private double infectionRate;
     private EventType eventType;
 
@@ -18,6 +18,10 @@ public class Event implements Updatable {
             is influenced by transmitability of the infected people, the measures
             and probably some other stuff as well, but I'm not sure what
          */
+        for (Person person : people.keySet()) {
+
+        }
+
         return eventType.getCloseness();
     }
 

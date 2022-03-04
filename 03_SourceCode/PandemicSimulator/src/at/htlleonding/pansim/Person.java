@@ -19,12 +19,16 @@ public class Person implements Updatable{
         this.quarantined = false;
     }
 
+    public double getTransmitability(){
+        return infectionState.getTransmitability();
+    }
+
     /*
     eventProb is the probability to catch the virus when being on a specific event
     measuresEffect is how effective the measures are. It reduces the eventProb
      */
     private void infect(double eventProb, double measuresEffect, Virus virus){
-        if(new Randomizer().rand() > immunitivity){
+        if(new Randomizer().rand() <= immunitivity){
             this.infectionState = InfectionState.INFECTED;
         }
         timer = 10;

@@ -6,4 +6,7 @@ public class Virus {
     private int incubationTime;
     private double deadliness;
 
+    public double getInfectiousness() {
+        return infectiousness;
+    }
 }

@@ -24,8 +24,8 @@ public class Person implements Updatable{
     eventProb is the probability to catch the virus when being on a specific event
     measuresEffect is how effective the measures are. It reduces the eventProb
      */
-    private void infect(double eventProb, double measuresEffect){
-        double probability = eventProb * Virus.infectousness * (1 - immunitivity) * (1 - measuresEffect);
+    private void infect(double eventProb, double measuresEffect, Virus virus){
+        double probability = eventProb * virus.getInfectiousness() * (1 - immunitivity) * (1 - measuresEffect);
 
         
         if(probability >= new Randomizer().rand())

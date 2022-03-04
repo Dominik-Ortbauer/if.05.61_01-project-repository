@@ -34,10 +34,6 @@ public class Person implements Updatable{
         timer = 10;
     }
 
-    public InfectionState getInfectionState() {
-        return infectionState;
-    }
-
     public void vaccinate(Vaccine vac){
         immunitivity += vac.getEffectivity();
         if(immunitivity > 1) immunitivity = 1;

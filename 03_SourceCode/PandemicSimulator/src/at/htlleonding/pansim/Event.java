@@ -14,15 +14,21 @@ public class Event implements Updatable {
     }
 
     private double calculateInfectionRate(EventType eventType) {
+        /*
+            is influenced by transmitability of the infected people, the measures
+            and probably some other stuff as well, but I'm not sure what
+         */
         return eventType.getCloseness();
     }
 
     public void join(Person person, int duration){
         people.put(person, duration);
+        infectionRate = calculateInfectionRate(eventType);
     }
 
     public void leave(Person person){
         people.remove(person);
+        infectionRate = calculateInfectionRate(eventType);
     }
 
     public void update(int generation){

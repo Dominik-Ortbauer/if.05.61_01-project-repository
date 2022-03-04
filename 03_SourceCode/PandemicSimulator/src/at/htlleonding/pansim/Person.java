@@ -3,7 +3,7 @@ package at.htlleonding.pansim;
 public class Person implements Updatable{
     private InfectionState infectionState;
     private double transmitability;
-    private double immunitivity; //
+    private double immunitivity;
     private double probOfDeath;
     private boolean quarantined;
     private int timer;
@@ -25,11 +25,9 @@ public class Person implements Updatable{
     measuresEffect is how effective the measures are. It reduces the eventProb
      */
     private void infect(double eventProb, double measuresEffect, Virus virus){
-        double probability = eventProb * virus.getInfectiousness() * (1 - immunitivity) * (1 - measuresEffect);
-
-        
-        if(probability >= new Randomizer().rand())
-        this.infectionState = InfectionState.INFECTED;
+        if(new Randomizer().rand() > immunitivity){
+            this.infectionState = InfectionState.INFECTED;
+        }
         timer = 10;
     }
 

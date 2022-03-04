@@ -10,12 +10,35 @@ public class City {
     private Virus virus;
     private Renderer renderer;
     private int generation;
+    private int endGeneration = 365;
 
-    private void update(){
+    public City(int amountOfPeople, int endGeneration) {
+        generation = 0;
+        virus = new Virus();
+        this.endGeneration = endGeneration;
 
+        initPeople(amountOfPeople);
     }
 
-    public void startSimulation(int generation){
+    private void update(){
+        for(generation = 0; generation < endGeneration; generation++) {
+            for(Person p : people) {
+                p.update(generation);
+            }
 
+            for(Event e : events) {
+                e.update(generation);
+            }
+        }
+    }
+
+    public void startSimulation(){
+        update();
+    }
+
+    private void initPeople(int amountOfPeople) {
+        for (int i = 0; i < amountOfPeople; i++) {
+            people.add(new Person());
+        }
     }
 }

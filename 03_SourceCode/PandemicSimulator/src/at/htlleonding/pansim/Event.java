@@ -3,7 +3,7 @@ package at.htlleonding.pansim;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Event {
+public class Event implements Updatable {
     private HashMap<Person, Integer> people;
     private double infectionRate;
     private EventType eventType;
@@ -27,7 +27,7 @@ public class Event {
         people.remove(person);
     }
 
-    public void update(){
+    public void update(int generation){
 
     }
 }

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EventUT {
 
     @Test
-    void testJoinShallReturnTrueGivenAPerson() {
+    void testInfectedPersonShouldInfectSusceptabelPersonInSameEvent() {
         Event event = new Event(EventType.TEST);
 
         Person uninfected = new Person();

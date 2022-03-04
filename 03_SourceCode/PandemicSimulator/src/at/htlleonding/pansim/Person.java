@@ -2,11 +2,11 @@ package at.htlleonding.pansim;
 
 public class Person implements Updatable{
     private InfectionState infectionState;
-    private double transmitability;
-    private double immunitivity; //
+    private double immunitivity;
     private double probOfDeath;
     private boolean quarantined;
     private int timer;
+    private int quarantineTimer;
 
     private void participateInEvent(Event event){
 
@@ -14,7 +14,6 @@ public class Person implements Updatable{
 
     public Person() {
         this.infectionState = InfectionState.SUSCEPTABLE;
-        this.transmitability = 0;
         this.immunitivity = 0;
         // this.probOfDeath = probOfDeath;
         this.quarantined = false;
@@ -58,6 +57,11 @@ public class Person implements Updatable{
                 }
                 break;
 
+        }
+        if (quarantined){
+            if (quarantineTimer <= 0){
+                this.quarantined = false;
+            }
         }
     }
 }

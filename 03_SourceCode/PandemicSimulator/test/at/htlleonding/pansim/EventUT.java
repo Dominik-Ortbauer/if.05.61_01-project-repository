@@ -10,9 +10,7 @@ class EventUT {
     @Test
     void testJoinShallReturnTrueGivenAPerson() {
         Event event = new Event(EventType.TEST);
-    }
 
-    @Test
-    void leave() {
+        Person uninfected = new Person();
     }
 }

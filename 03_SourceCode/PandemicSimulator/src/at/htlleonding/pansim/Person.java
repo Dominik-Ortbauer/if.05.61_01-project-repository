@@ -2,7 +2,6 @@ package at.htlleonding.pansim;
 
 public class Person implements Updatable{
     private InfectionState infectionState;
-    private double transmitability;
     private double immunitivity; //
     private double probOfDeath;
     private boolean quarantined;

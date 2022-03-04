@@ -2,7 +2,7 @@ package at.htlleonding.pansim;
 
 public class Virus {
     private String name;
-    private double infectousness;
+    public static double infectousness;
     private int incubationTime;
     private double deadliness;
 

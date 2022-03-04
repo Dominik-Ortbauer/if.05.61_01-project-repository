@@ -3,13 +3,9 @@ package at.htlleonding.pansim;
 public class Person {
     private InfectionState infectionState;
     private double transmitability;
-    private double immunitivity;
+    private double immunitivity; //
     private double probOfDeath;
     private boolean qurantined;
-
-    public Person(){
-
-    }
 
     private void participateInEvent(Event event){
 
@@ -23,7 +19,15 @@ public class Person {
         this.qurantined = false;
     }
 
-    private void infect(){
+    /*
+    eventProb is the probability to catch the virus when being on a specific event
+    measuresEffect is how effective the measures are. It reduces the eventProb
+     */
+    private void infect(double eventProb, double measuresEffect){
+        double probability = eventProb * Virus.infectousness * (1 - immunitivity) * (1 - measuresEffect);
+
+        
+        if(probability >= new Randomizer().rand())
         this.infectionState = InfectionState.INFECTED;
     }
 

@@ -15,6 +15,7 @@ public class Event {
     }
 
     private double calculateInfectionRate(double closeness) {
+        //Transmitability of the person thats infected. If there are multiple people infected, take that into consideration somehow as well
         return closeness;
     }
 

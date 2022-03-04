@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class PersonUT {
     @Test
-    void PersonShouldBeSusceptableAfterInitializing(){
+    void PersonShouldBeSusceptibleAfterInitializing(){
         Person person = new Person();
         Assertions.assertEquals(InfectionState.SUSCEPTABLE, person.getInfectionState());
     }
@@ -31,7 +31,7 @@ public class PersonUT {
     }
 
     @Test
-    void PersonShouldBeSusceptableAfterBeeingRecoveredFor180Days(){
+    void PersonShouldBeSusceptibleAfterBeingRecoveredFor180Days(){
         Person person = new Person();
         Assertions.assertEquals(InfectionState.SUSCEPTABLE, person.getInfectionState());
         person.infect();

@@ -30,8 +30,9 @@ public class Person implements Updatable{
         timer = 10;
     }
 
-    public void vaccinate(){
-
+    public void vaccinate(Vaccine vac){
+        immunitivity += vac.getEffectivity();
+        if(immunitivity > 1) immunitivity = 1;
     }
 
     private void recover(){
@@ -45,7 +46,7 @@ public class Person implements Updatable{
                 timer--;
                 if (timer <= 0){
                     recover();
-                    timer = 180;
+                    timer = infectionState.duration;
                 }
                 break;
             case RECOVERED:

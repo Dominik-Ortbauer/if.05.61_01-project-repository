@@ -12,6 +12,10 @@ public class Person implements Updatable{
 
     }
 
+    public InfectionState getInfectionState() {
+        return infectionState;
+    }
+
     public Person() {
         this.infectionState = InfectionState.SUSCEPTABLE;
         this.immunitivity = 0;

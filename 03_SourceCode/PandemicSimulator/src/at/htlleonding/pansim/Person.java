@@ -12,6 +12,10 @@ public class Person implements Updatable{
 
     }
 
+    public InfectionState getInfectionState() {
+        return infectionState;
+    }
+
     public Person() {
         this.infectionState = InfectionState.SUSCEPTABLE;
         this.immunitivity = 0;
@@ -27,8 +31,8 @@ public class Person implements Updatable{
     eventProb is the probability to catch the virus when being on a specific event
     measuresEffect is how effective the measures are. It reduces the eventProb
      */
-    private void infect(double eventProb, double measuresEffect, Virus virus){
-        if(new Randomizer().rand() <= immunitivity){
+    public void infect(){
+        if(new Randomizer().rand() > immunitivity){
             this.infectionState = InfectionState.INFECTED;
         }
         timer = 10;

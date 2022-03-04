@@ -12,7 +12,13 @@ public class City {
     private int generation;
     private int endGeneration = 365;
 
-    public City(int amountOfPeople, int endGeneration) {
+    private static City instance = new City(100, 365);
+
+    public City getInstance() {
+        return instance;
+    }
+
+    private City(int amountOfPeople, int endGeneration) {
         generation = 0;
         virus = new Virus();
         this.endGeneration = endGeneration;

@@ -7,4 +7,8 @@ public class Vaccine extends Measure{
         super(duration, obeynessPercentage);
         this.effectivity = effectivity;
     }
+
+    public double getEffectivity() {
+        return effectivity;
+    }
 }

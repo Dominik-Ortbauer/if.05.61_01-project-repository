@@ -63,7 +63,6 @@ public class Person implements Updatable{
                     infectionState = InfectionState.SUSCEPTABLE;
                 }
                 break;
-
         }
         if (quarantined){
             if (quarantineTimer <= 0){

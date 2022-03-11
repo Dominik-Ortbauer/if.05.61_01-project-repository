@@ -10,6 +10,7 @@ public class City {
     private Renderer renderer;
     private int generation;
     private int endGeneration = 365;
+    private Timer timer;
 
     private static City instance = new City(100, 365);
 
@@ -26,14 +27,12 @@ public class City {
     }
 
     private void update(){
-        for(generation = 0; generation < endGeneration; generation++) {
-            for(Person p : people) {
-                p.update(generation);
-            }
+        for(Person p : people) {
+            p.update(generation);
+        }
 
-            for(Event e : events) {
-                e.update(generation);
-            }
+        for(Event e : events) {
+            e.update(generation);
         }
 
         Map<InfectionState, Integer> counter = new HashMap();
@@ -46,10 +45,17 @@ public class City {
         }
 
         System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
+
+        generation++;
+
+        if(generation > endGeneration) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     public void startSimulation(){
-        Timer timer = new Timer();
+        timer = new Timer();
 
         timer.schedule(new TimerTask() {
             @Override
@@ -61,7 +67,9 @@ public class City {
 
     private void initPeople(int amountOfPeople) {
         for (int i = 0; i < amountOfPeople; i++) {
-            people.add(new Person());
+            Person p = new Person();
+            p.infect();
+            people.add(p);
         }
     }
 }

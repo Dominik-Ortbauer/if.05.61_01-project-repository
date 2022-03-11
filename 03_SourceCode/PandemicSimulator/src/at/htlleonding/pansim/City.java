@@ -1,7 +1,9 @@
 package at.htlleonding.pansim;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class City {
     private List<Event> events = new LinkedList<>();
@@ -36,6 +38,17 @@ public class City {
                 e.update(generation);
             }
         }
+
+        Map<InfectionState, Integer> counter = new HashMap();
+        counter.put(InfectionState.SUSCEPTABLE, 0);
+        counter.put(InfectionState.INFECTED, 0);
+        counter.put(InfectionState.RECOVERED, 0);
+
+        for(Person p : people) {
+            counter.merge(p.getInfectionState(), 1, Integer::sum);
+        }
+
+        System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
     }
 
     public void startSimulation(){

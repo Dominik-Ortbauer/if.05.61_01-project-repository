@@ -1,9 +1,6 @@
 package at.htlleonding.pansim;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class City {
     private List<Event> events = new LinkedList<>();
@@ -16,7 +13,7 @@ public class City {
 
     private static City instance = new City(100, 365);
 
-    public City getInstance() {
+    public static City getInstance() {
         return instance;
     }
 
@@ -52,7 +49,14 @@ public class City {
     }
 
     public void startSimulation(){
-        update();
+        Timer timer = new Timer();
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                update();
+            }
+        }, 0, 1000);
     }
 
     private void initPeople(int amountOfPeople) {

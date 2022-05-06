@@ -18,11 +18,13 @@ public class Event implements Updatable {
             is influenced by transmitability of the infected people, the measures
             and probably some other stuff as well, but I'm not sure what
          */
-        for (Person person : people.keySet()) {
+        double infectionRates = 0;
 
+        for (Person person : people.keySet()) {
+            infectionRates += person.getTransmitability();
         }
 
-        return eventType.getCloseness();
+        return (infectionRates/people.keySet().size()) * eventType.getCloseness();
     }
 
     public void join(Person person, int duration){

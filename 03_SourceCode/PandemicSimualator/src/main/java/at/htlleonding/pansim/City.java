@@ -1,6 +1,10 @@
 package at.htlleonding.pansim;
 
+import at.htlleonding.App;
+
 import java.util.*;
+
+import javafx.scene.chart.XYChart;
 
 public class City {
     private List<Event> events = new LinkedList<>();
@@ -52,6 +56,8 @@ public class City {
         }
 
         System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
+
+        App.primaryViewController.suseptableChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.SUSCEPTABLE)));
 
         generation++;
 

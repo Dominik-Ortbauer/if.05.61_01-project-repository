@@ -4,6 +4,6 @@ module org.example {
 
     opens at.htlleonding to javafx.fxml;
     exports at.htlleonding;
-    exports at.htlleonding.pansimApp;
-    opens at.htlleonding.pansimApp to javafx.fxml;
+    opens at.htlleonding.controller to javafx.fxml;
+    exports at.htlleonding.controller;
 }

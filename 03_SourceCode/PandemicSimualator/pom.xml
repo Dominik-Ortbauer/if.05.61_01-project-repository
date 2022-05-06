@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>at.htlleonding.pansimApp.App</mainClass>
+                    <mainClass>at.htlleonding.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>

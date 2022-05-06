@@ -32,6 +32,10 @@ public class Person implements Updatable{
     measuresEffect is how effective the measures are. It reduces the eventProb
      */
     public void infect(){
+        if(infectionState == InfectionState.INFECTED || infectionState == InfectionState.RECOVERED){
+            return;
+        }
+
         if(new Randomizer().rand() > immunitivity){
             this.infectionState = InfectionState.INFECTED;
         }

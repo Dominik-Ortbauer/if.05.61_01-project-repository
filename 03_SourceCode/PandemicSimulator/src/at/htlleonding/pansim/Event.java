@@ -40,7 +40,8 @@ public class Event implements Updatable {
     }
 
     public void update(int generation){
-        for (Person person : people.keySet()) {
+        for(int i = people.size()-1; i >= 0; i--){
+            Person person = people.keySet().toArray(new Person[0])[i];
             people.put(person, people.get(person) - 1);
             if (people.get(person) == 0) {
                 leave(person);

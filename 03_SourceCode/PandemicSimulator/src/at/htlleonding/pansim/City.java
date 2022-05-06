@@ -78,6 +78,7 @@ public class City {
             if(new Random().nextDouble() < 0.25d) {
                 p.infect();
             }
+            joinRandomEvent(p);
             people.add(p);
         }
     }

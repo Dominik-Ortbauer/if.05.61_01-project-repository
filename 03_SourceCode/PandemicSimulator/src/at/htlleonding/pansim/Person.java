@@ -70,4 +70,8 @@ public class Person implements Updatable{
             }
         }
     }
+
+    public void leaveEvent() {
+        City.getInstance().joinRandomEvent(this);
+    }
 }

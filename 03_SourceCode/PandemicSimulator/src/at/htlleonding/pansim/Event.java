@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Event implements Updatable {
-    private HashMap<Person, Integer> people; //the integer is the duration for which the person is in the event
+    private HashMap<Person, Integer> people = new HashMap<>(); //the integer is the duration for which the person is in the event
     private double infectionRate;
     private EventType eventType;
 
@@ -35,6 +35,7 @@ public class Event implements Updatable {
 
     public void leave(Person person){
         people.remove(person);
+        person.leaveEvent();
         infectionRate = calculateInfectionRate(eventType);
     }
 

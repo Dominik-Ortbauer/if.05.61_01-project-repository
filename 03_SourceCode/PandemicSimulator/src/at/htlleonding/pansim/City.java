@@ -23,6 +23,13 @@ public class City {
         virus = new Virus();
         this.endGeneration = endGeneration;
 
+        events.add(new Event(EventType.PUBLIC_TRANSPORT));
+        events.add(new Event(EventType.ESSENTIAL));
+        events.add(new Event(EventType.FESTIVITY));
+        events.add(new Event(EventType.GATHERING));
+        events.add(new Event(EventType.JOB));
+        events.add(new Event(EventType.NON_ESSENTIAL));
+
         initPeople(amountOfPeople);
     }
 
@@ -68,8 +75,15 @@ public class City {
     private void initPeople(int amountOfPeople) {
         for (int i = 0; i < amountOfPeople; i++) {
             Person p = new Person();
-            p.infect();
+            if(new Random().nextDouble() < 0.25d) {
+                p.infect();
+            }
             people.add(p);
         }
+    }
+
+    public void joinRandomEvent(Person p) {
+        Event e = events.get(new Random().nextInt(events.size()));
+        e.join(p, 5);
     }
 }

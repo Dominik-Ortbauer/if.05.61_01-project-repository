@@ -1,6 +1,7 @@
 package at.htlleonding.pansim;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class Event implements Updatable {
     private HashMap<Person, Integer> people; //the integer is the duration for which the person is in the event
@@ -36,6 +37,19 @@ public class Event implements Updatable {
     }
 
     public void update(int generation){
+        for (Person person : people.keySet()) {
+            people.put(person, people.get(person) - 1);
+            if (people.get(person) == 0) {
+                leave(person);
+            }
+        }
 
+        infectionRate = calculateInfectionRate(eventType);
+
+        for(Person person : people.keySet()){
+            if(new Random().nextDouble() < infectionRate){
+                person.infect();
+            }
+        }
     }
 }

@@ -13,9 +13,22 @@ public class PrimaryViewController {
 
     public XYChart.Series<Integer, Integer> suseptableChart = new XYChart.Series<>();
 
+    public XYChart.Series<Integer, Integer> infectedChart = new XYChart.Series<>();
+
+    public XYChart.Series<Integer, Integer> recoveredChart = new XYChart.Series<>();
+
     @FXML
     public void initialize() {
         App.primaryViewController = this;
+
+        suseptableChart.setName("Suseptable");
+        infectedChart.setName("Infected");
+        recoveredChart.setName("Recovered");
+
         chart.getData().add(suseptableChart);
+        chart.getData().add(infectedChart);
+        chart.getData().add(recoveredChart);
+
+        chart.setTitle("People");
     }
 }

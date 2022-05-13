@@ -4,6 +4,7 @@ import at.htlleonding.App;
 
 import java.util.*;
 
+import javafx.application.Platform;
 import javafx.scene.chart.XYChart;
 
 public class City {
@@ -16,13 +17,13 @@ public class City {
     private int endGeneration = 365;
     private Timer timer;
 
-    private static City instance = new City(100, 365);
+    private static City instance = new City(10000, 25, 365);
 
     public static City getInstance() {
         return instance;
     }
 
-    private City(int amountOfPeople, int endGeneration) {
+    private City(int amountOfPeople, int infectedAmount, int endGeneration) {
         generation = 0;
         virus = new Virus();
         this.endGeneration = endGeneration;
@@ -34,7 +35,7 @@ public class City {
         events.add(new Event(EventType.JOB));
         events.add(new Event(EventType.NON_ESSENTIAL));
 
-        initPeople(amountOfPeople);
+        initPeople(amountOfPeople, infectedAmount);
     }
 
     private void update(){
@@ -57,7 +58,11 @@ public class City {
 
         System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
 
-        App.primaryViewController.suseptableChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.SUSCEPTABLE)));
+        Platform.runLater(() -> {
+            App.primaryViewController.suseptableChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.SUSCEPTABLE)));
+            App.primaryViewController.infectedChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.INFECTED)));
+            App.primaryViewController.recoveredChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.RECOVERED)));
+        });
 
         generation++;
 
@@ -75,13 +80,13 @@ public class City {
             public void run() {
                 update();
             }
-        }, 0, 1000);
+        }, 0, 100);
     }
 
-    private void initPeople(int amountOfPeople) {
+    private void initPeople(int amountOfPeople, int infectedAmount) {
         for (int i = 0; i < amountOfPeople; i++) {
             Person p = new Person();
-            if(new Random().nextDouble() < 0.25d) {
+            if(i < infectedAmount) {
                 p.infect();
             }
             joinRandomEvent(p);
@@ -90,7 +95,17 @@ public class City {
     }
 
     public void joinRandomEvent(Person p) {
-        Event e = events.get(new Random().nextInt(events.size()));
-        e.join(p, 5);
+        Collections.shuffle(events);
+
+        boolean joined = false;
+        for(Event e : events) {
+            joined = joined || e.join(p, 1);
+        }
+
+        if(!joined) {
+            Event e = new Event(EventType.values()[(int) (Math.random() * EventType.values().length)]);
+            e.join(p, 1);
+            events.add(e);
+        }
     }
 }

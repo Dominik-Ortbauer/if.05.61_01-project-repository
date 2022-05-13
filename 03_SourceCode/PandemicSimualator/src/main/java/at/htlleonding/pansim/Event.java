@@ -28,9 +28,15 @@ public class Event implements Updatable {
         return (infectionRates/people.keySet().size()) * eventType.getCloseness();
     }
 
-    public void join(Person person, int duration){
+    public boolean join(Person person, int duration){
+        if(people.size() >= eventType.getMaxPeople()){
+            return false;
+        }
+
         people.put(person, duration);
         infectionRate = calculateInfectionRate(eventType);
+
+        return true;
     }
 
     public void leave(Person person){

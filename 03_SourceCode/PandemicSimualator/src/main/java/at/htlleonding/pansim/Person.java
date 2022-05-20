@@ -6,11 +6,7 @@ public class Person implements Updatable{
     private double probOfDeath;
     private boolean quarantined;
     private int timer;
-    private int quarantineTimer;
-
-    private void participateInEvent(Event event){
-
-    }
+    private int quarantineTimer = 10;
 
     public InfectionState getInfectionState() {
         return infectionState;
@@ -71,11 +67,19 @@ public class Person implements Updatable{
         if (quarantined){
             if (quarantineTimer <= 0){
                 this.quarantined = false;
+                City.getInstance().joinRandomEvent(this);
             }
         }
     }
 
     public void leaveEvent() {
-        City.getInstance().joinRandomEvent(this);
+        if (!this.quarantined)
+            City.getInstance().joinRandomEvent(this);
+    }
+
+    public void testPerson() {
+        if(this.infectionState.equals(InfectionState.INFECTED)){
+            this.quarantined = true;
+        }
     }
 }

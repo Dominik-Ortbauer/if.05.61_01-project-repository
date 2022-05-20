@@ -16,8 +16,10 @@ public class City {
     private int generation;
     private int endGeneration = 365;
     private Timer timer;
+    private int testQuantity = 1000;
+    private static int amountOfPeople = 10000;
 
-    private static City instance = new City(10000, 25, 365);
+    private static City instance = new City(amountOfPeople, 25, 365);
 
     public static City getInstance() {
         return instance;
@@ -55,7 +57,11 @@ public class City {
         for(Person p : people) {
             counter.merge(p.getInfectionState(), 1, Integer::sum);
         }
-
+        if (counter.get(InfectionState.INFECTED ) > amountOfPeople/4){
+            for (int i = new Random().nextInt(testQuantity); i < people.size(); i+= testQuantity){
+                people.get(i).testPerson();
+            }
+        }
         System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
 
         Platform.runLater(() -> {
@@ -64,8 +70,8 @@ public class City {
             App.primaryViewController.recoveredChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.RECOVERED)));
         });
 
-        generation++;
 
+        generation++;
         if(generation > endGeneration) {
             timer.cancel();
             timer = null;
@@ -80,7 +86,7 @@ public class City {
             public void run() {
                 update();
             }
-        }, 0, 100);
+        }, 0, 10);
     }
 
     private void initPeople(int amountOfPeople, int infectedAmount) {

@@ -12,12 +12,13 @@ public class City {
     private List<Person> people = new LinkedList<>();
     private List<Measure> measures = new LinkedList<>();
     private Virus virus;
-    private Renderer renderer;
     private int generation;
     private int endGeneration = 365;
     private Timer timer;
+    private int testQuantity = 1000;
+    private static int amountOfPeople = 10000;
 
-    private static City instance = new City(1000, 25, 365);
+    private static City instance = new City(amountOfPeople, 25, 365);
 
     public static City getInstance() {
         return instance;
@@ -52,11 +53,25 @@ public class City {
         counter.put(InfectionState.INFECTED, 0);
         counter.put(InfectionState.RECOVERED, 0);
 
+
         for(Person p : people) {
             counter.merge(p.getInfectionState(), 1, Integer::sum);
         }
 
-        //System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
+        /*
+        EventType[] eventsToClose = {EventType.FESTIVITY, EventType.GATHERING, EventType.NON_ESSENTIAL};
+        InfectionState[] effectedPeople = {InfectionState.INFECTED, InfectionState.RECOVERED, InfectionState.SUSCEPTABLE};
+        Lockdown lockdown = Lockdown.newLockdown(21, 0.75, eventsToClose, effectedPeople);
+        if(counter.get(InfectionState.INFECTED) > 3000 && lockdown.isActive()){
+            lockdown.start(events);
+        }
+         */
+        if (counter.get(InfectionState.INFECTED ) > amountOfPeople/4){
+            for (int i = new Random().nextInt(testQuantity); i < people.size(); i+= testQuantity){
+                people.get(i).testPerson();
+            }
+        }
+        System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
 
         Platform.runLater(() -> {
             App.primaryViewController.suseptableChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.SUSCEPTABLE)));
@@ -66,8 +81,8 @@ public class City {
             App.primaryViewController.setEventTextArea(events);
         });
 
-        generation++;
 
+        generation++;
         if(generation > endGeneration) {
             timer.cancel();
             timer = null;
@@ -82,7 +97,7 @@ public class City {
             public void run() {
                 update();
             }
-        }, 0, 100);
+        }, 0, 10);
     }
 
     private void initPeople(int amountOfPeople, int infectedAmount) {

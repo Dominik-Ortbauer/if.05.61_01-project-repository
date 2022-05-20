@@ -1,8 +1,8 @@
 package at.htlleonding.pansim;
 
 public class Measure {
-    private double obeynessPercentage;
-    private int duration;
+    protected double obeynessPercentage;
+    protected int duration;
 
     public Measure(int duration, double obeynessPercentage){
         this.duration = duration;

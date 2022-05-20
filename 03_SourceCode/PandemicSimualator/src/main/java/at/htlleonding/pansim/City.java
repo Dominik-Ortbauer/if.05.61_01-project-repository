@@ -12,7 +12,6 @@ public class City {
     private List<Person> people = new LinkedList<>();
     private List<Measure> measures = new LinkedList<>();
     private Virus virus;
-    private Renderer renderer;
     private int generation;
     private int endGeneration = 365;
     private Timer timer;
@@ -52,10 +51,19 @@ public class City {
         counter.put(InfectionState.INFECTED, 0);
         counter.put(InfectionState.RECOVERED, 0);
 
+
         for(Person p : people) {
             counter.merge(p.getInfectionState(), 1, Integer::sum);
         }
 
+        /*
+        EventType[] eventsToClose = {EventType.FESTIVITY, EventType.GATHERING, EventType.NON_ESSENTIAL};
+        InfectionState[] effectedPeople = {InfectionState.INFECTED, InfectionState.RECOVERED, InfectionState.SUSCEPTABLE};
+        Lockdown lockdown = Lockdown.newLockdown(21, 0.75, eventsToClose, effectedPeople);
+        if(counter.get(InfectionState.INFECTED) > 3000 && lockdown.isActive()){
+            lockdown.start(events);
+        }
+         */
         System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
 
         Platform.runLater(() -> {

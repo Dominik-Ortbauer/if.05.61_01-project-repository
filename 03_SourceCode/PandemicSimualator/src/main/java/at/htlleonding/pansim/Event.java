@@ -1,6 +1,7 @@
 package at.htlleonding.pansim;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class Event implements Updatable {
@@ -12,6 +13,10 @@ public class Event implements Updatable {
         this.infectionRate = calculateInfectionRate(eventType);
         this.eventType = eventType;
         people = new HashMap<>();
+    }
+
+    public EventType getEventType() {
+        return eventType;
     }
 
     private double calculateInfectionRate(EventType eventType) {
@@ -43,6 +48,16 @@ public class Event implements Updatable {
         people.remove(person);
         person.leaveEvent();
         infectionRate = calculateInfectionRate(eventType);
+    }
+
+    public void close(List<Event> events){
+        for (Person p :
+                people.keySet()) {
+
+        }
+        people.clear();
+
+        events.remove(this);
     }
 
     public void update(int generation){

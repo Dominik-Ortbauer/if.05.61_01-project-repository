@@ -62,4 +62,24 @@ public class Event implements Updatable {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "people=" + people.size() +
+                ", infectionRate=" + infectionRate +
+                ", eventType=" + eventType +
+                '}';
+    }
+
+    public boolean joinInit(Person person, int duration) {
+        if(people.size() >= eventType.getMaxPeople()/1.1){
+            return false;
+        }
+
+        people.put(person, duration);
+        infectionRate = calculateInfectionRate(eventType);
+
+        return true;
+    }
 }

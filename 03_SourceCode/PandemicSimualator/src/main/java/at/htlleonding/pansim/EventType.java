@@ -3,7 +3,7 @@ package at.htlleonding.pansim;
 public enum EventType {
     JOB(0.3, 50),
     ESSENTIAL(0.2, 20),
-    FESTIVITY(0.6, 200),
+    FESTIVITY(0.6, 20),
     PUBLIC_TRANSPORT(0.9, 25),
     NON_ESSENTIAL(0.5, 20),
     GATHERING(0.7, 30),

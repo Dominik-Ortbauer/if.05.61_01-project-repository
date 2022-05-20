@@ -8,8 +8,8 @@ public class Person implements Updatable{
     private int timer;
     private int quarantineTimer;
 
-    private void participateInEvent(Event event){
-
+    protected boolean participateInEvent(Event event){
+        return event.join(this, 1);
     }
 
     public InfectionState getInfectionState() {

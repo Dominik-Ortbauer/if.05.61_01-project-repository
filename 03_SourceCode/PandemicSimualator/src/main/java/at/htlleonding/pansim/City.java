@@ -17,7 +17,7 @@ public class City {
     private int endGeneration = 365;
     private Timer timer;
 
-    private static City instance = new City(10000, 25, 365);
+    private static City instance = new City(1000, 25, 365);
 
     public static City getInstance() {
         return instance;
@@ -56,12 +56,14 @@ public class City {
             counter.merge(p.getInfectionState(), 1, Integer::sum);
         }
 
-        System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
+        //System.out.println("Susceptable: " + counter.get(InfectionState.SUSCEPTABLE) + " | Infected: " + counter.get(InfectionState.INFECTED) + " | Recovered: " + counter.get(InfectionState.RECOVERED));
 
         Platform.runLater(() -> {
             App.primaryViewController.suseptableChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.SUSCEPTABLE)));
             App.primaryViewController.infectedChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.INFECTED)));
             App.primaryViewController.recoveredChart.getData().add(new XYChart.Data<>(generation, counter.get(InfectionState.RECOVERED)));
+
+            App.primaryViewController.setEventTextArea(events);
         });
 
         generation++;
@@ -89,8 +91,26 @@ public class City {
             if(i < infectedAmount) {
                 p.infect();
             }
-            joinRandomEvent(p);
+            initEvents(p);
             people.add(p);
+        }
+
+        initEvents(mPerson);
+        people.add(mPerson);
+    }
+
+    Person mPerson = new TestPerson();
+
+    public void initEvents(Person p) {
+        boolean joined = false;
+        for(Event e : events) {
+            joined = joined || e.joinInit(p, 1);
+        }
+
+        if(!joined) {
+            Event e = new Event(EventType.values()[(int) (Math.random() * EventType.values().length)]);
+            e.join(p, 1);
+            events.add(e);
         }
     }
 
@@ -104,7 +124,7 @@ public class City {
 
         if(!joined) {
             Event e = new Event(EventType.values()[(int) (Math.random() * EventType.values().length)]);
-            e.join(p, 1);
+            p.participateInEvent(e);
             events.add(e);
         }
     }

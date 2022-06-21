@@ -112,6 +112,7 @@ public class City {
 
         initEvents(mPerson);
         people.add(mPerson);
+        mPerson.participateInEvent(new Event(EventType.NON_ESSENTIAL));
     }
 
     Person mPerson = new TestPerson();
@@ -134,7 +135,7 @@ public class City {
 
         boolean joined = false;
         for(Event e : events) {
-            joined = joined || e.join(p, 1);
+            joined = joined || p.participateInEvent(e);
         }
 
         if(!joined) {

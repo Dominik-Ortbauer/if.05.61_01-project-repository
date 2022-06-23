@@ -2,7 +2,7 @@ package at.htlleonding.pansim;
 
 public enum InfectionState  {
     SUSCEPTABLE(-1, 0),
-    INFECTED(10, 1),
+    INFECTED(10, 1.5),
     RECOVERED(30, 0);
 
     int duration;

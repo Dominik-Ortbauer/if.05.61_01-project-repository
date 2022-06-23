@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dda2c1e9-c637-407d-8af4-f3621090ec4a" name="Changes" comment="" />
+    <list default="true" id="dda2c1e9-c637-407d-8af4-f3621090ec4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../01_ProjectPlanning/Pandemic_Simulator.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../01_ProjectPlanning/Pandemic_Simulator.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +81,7 @@
       <workItem from="1651818292181" duration="2805000" />
       <workItem from="1652423282629" duration="157000" />
       <workItem from="1654841023064" duration="109000" />
+      <workItem from="1655989012450" duration="19000" />
     </task>
     <servers />
   </component>

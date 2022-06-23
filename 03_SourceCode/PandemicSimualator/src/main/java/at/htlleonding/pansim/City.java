@@ -106,13 +106,13 @@ public class City {
             if(i < infectedAmount) {
                 p.infect();
             }
-            initEvents(p);
+            joinRandomEvent(p);
             people.add(p);
         }
 
-        initEvents(mPerson);
-        people.add(mPerson);
-        mPerson.participateInEvent(new Event(EventType.NON_ESSENTIAL));
+        //initEvents(mPerson);
+        //people.add(mPerson);
+        //mPerson.participateInEvent(new Event(EventType.NON_ESSENTIAL));
     }
 
     Person mPerson = new TestPerson();

@@ -35,7 +35,7 @@ public class PrimaryViewController {
         infectedChart.setName("Infected");
         recoveredChart.setName("Recovered");
 
-        chart.getData().add(suseptableChart);
+        //chart.getData().add(suseptableChart);
         chart.getData().add(infectedChart);
         chart.getData().add(recoveredChart);
 

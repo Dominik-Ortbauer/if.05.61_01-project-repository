@@ -13,10 +13,10 @@ public class City {
     private List<Measure> measures = new LinkedList<>();
     private Virus virus;
     private int generation;
-    private int endGeneration = 365;
+    private int endGeneration = 200;
     private Timer timer;
-    private int testQuantity = 1000;
-    private static int amountOfPeople = 10000;
+    private int testQuantity = 3500;
+    private static int amountOfPeople = 20000;
 
     private static City instance = new City(amountOfPeople, 25, 365);
 
@@ -66,7 +66,7 @@ public class City {
             lockdown.start(events);
         }
          */
-        if (counter.get(InfectionState.INFECTED ) > amountOfPeople/4){
+        if (counter.get(InfectionState.INFECTED ) > amountOfPeople/2){
             for (int i = new Random().nextInt(testQuantity); i < people.size(); i+= testQuantity){
                 people.get(i).testPerson();
             }
